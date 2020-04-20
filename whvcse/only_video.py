@@ -44,7 +44,7 @@ while i<class_num :
     i=i+1
 
 text=input('请输入您要刷的课程编号，用空格作分隔符：')
-text_end=text.split(" ")
+text_end=text.split(" ") #split函数：分隔符对字符串进行切片；转化为列表，使len函数能读出元素个数；在这里使用空格作为分隔符，这样就可以不用考虑输入法状态了~
 #print(text_end)
 text_long=len(text_end)
 #print(text_long)

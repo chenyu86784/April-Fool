@@ -2,11 +2,11 @@ print('说明：本程序为交流Python学习使用，禁止外传，禁止用�
 import requests,json,time,random
 from jsonpath import jsonpath
 name=input("请输入你的用户名：")
-cloud=int(name)                                        #重新定义一个变量，将name进行数据类型转换，用于判断是否在指定学号内
-while cloud<2018030830 or cloud>2018030876:
-    print('对不起，仅限云计算1801使用')
+'''cloud=int(name)                                        #重新定义一个变量，将name进行数据类型转换，用于判断是否在指定学号内
+while cloud<********** or cloud>**********:
+    print('对不起，仅限**使用')
     input('请关闭本程序')
-
+'''
 passwd=input("请输入密码：")
 url='http://wrggka.whvcse.edu.cn/api/M_User/Login?username='+name+'&password='+passwd+'&accessKey=1&secretKey=1'
 res = requests.get(url).json()

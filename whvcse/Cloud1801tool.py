@@ -1,4 +1,4 @@
-print('说明：本程序为云计算1801班交流Python学习使用，禁止外传，禁止用于违规用途，禁止商业用途;\n若因使用本程序造成违法行为，本人概不负责\n本程序所有api已隐藏')
+print('说明：本程序为云计算1801班交流Python学习使用，禁止外传，禁止用于违规用途，禁止商业用途;\n若因使用本程序造成违法行为，本人概不负责')
 import requests,json,time,random
 from jsonpath import jsonpath
 name=input("请输入你的用户名：")
@@ -7,9 +7,8 @@ while cloud<2018030830 or cloud>2018030876:
     print('对不起，仅限云计算1801使用')
     input('请关闭本程序')
 
-
 passwd=input("请输入密码：")
-url='#'+name+'#'+passwd+'#'
+url="http://wrggka.whvcse.edu.cn/api/M_User/Login?username='+name+'&password='+passwd+'&accessKey=1&secretKey=1"
 res = requests.get(url).json()
 #print(res)
 #登录状态
@@ -20,14 +19,14 @@ status=res['status']
 while status!='1':
     name = input('用户名或密码错误,请重新输入用户名：')
     passwd = input('请输入密码：')
-    url = '#' + name + '&password=' + passwd + '#'
+    url ="http://wrggka.whvcse.edu.cn/api/M_User/Login?username='+name+'&password='+passwd+'&accessKey=1&secretKey=1"
     res = requests.get(url).json()
     status = res['status']              #这里要对状态重新赋值，否则会陷入死循环
 
 #初始化信息
 user=res['trueName']
 uid=res['uid']
-url = "#" + uid + "#"
+url = "http://wrggka.whvcse.edu.cn/api/M_Semester/GetStudentLearningRecord?studentId=" + uid + "&accessKey=0&secretKey=0"
 res_class=requests.get(url).json()
 #print(res_class)
 passedCourseCount=res_class['passedCourseCount']
@@ -51,7 +50,7 @@ while y < class_num:
     if class_success=='未通过':
         courseId= res_class['courseList'][y]['courseId']
         courseClassId=res_class['courseList'][y]['courseClassId']
-        url = "#" + str(uid) + "#" + str(courseId)+ "#" + str(courseClassId) + "#"
+        url ="http://wrggka.whvcse.edu.cn/api/M_Course/GetCourseSPZT?userId=" + str(uid) + "&courseId=" + str(courseId)+ "&courseClassId=" + str(courseClassId) + "&accessKey=1&secretKey=1"
         r = requests.get(url).json()
         resID = jsonpath(r, "$..resID")
         videoID = list(set(resID))
@@ -61,8 +60,8 @@ while y < class_num:
             videoID_num=videoID[x]
             print('视频编号：'+videoID_num)
             videotime=random.randint(150, 700)
-            url="#"+str(uid)+"#"+str(videoID_num)+"#"+str(videotime)+"#"
-            time.sleep(1)
+            url="http://wrggka.whvcse.edu.cn/api/M_Course/IsNoStudyvideo?userId="+str(uid)+"&videoid="+str(videoID_num)+"&videotime="+str(videotime)+"&accessKey=1&secretKey=1"
+            time.sleep(1)  # ip防封
             res_video=requests.get(url).json()
             status_video = res['status']
             if status_video=='1':

@@ -13,7 +13,6 @@ while cloud<2018030830 or cloud>2018030876:
     print('对不起，仅限云计算1801使用')
     input('请关闭本程序')
 
-
 passwd=input("请输入密码：")
 url='http://wrggka.whvcse.edu.cn/api/M_User/Login?username='+name+'&password='+passwd+'&accessKey=1&secretKey=1'
 res = requests.get(url).json()
@@ -325,11 +324,7 @@ while negriuwg < class_num:
                 # print(stay)
             answerID = res_question[q]['ItemOptions'][d]['ItemID']  # 答案ID
             print('第' + str(q + 1) + '个答案ID为：' + answerID)
-            url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId=" + str(
-                uid) + "&courseClassId=" + str(courseClassId) + "&courseId=" + str(
-                courseId) + "&chapterId=0&paperId=" + str(paper2) + "&questionId=" + str(
-                questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(
-                answerID) + "&accessKey=1&secretKey=1"
+            url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId=" + str(uid) + "&courseClassId=" + str(courseClassId) + "&courseId=" + str(courseId) + "&chapterId=0&paperId=" + str(paper2) + "&questionId=" + str(questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(answerID) + "&accessKey=1&secretKey=1"
             res = requests.get(url).json()
             # print(res)
             status_test = res['result']
@@ -397,11 +392,7 @@ while negriuwg < class_num:
                     answerID = res_question[q + chang]['ItemOptions'][d]['ItemID']
                     g = g + ',' + answerID
                     print('答案为：' + str(g[1:]))
-                    url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId=" + str(
-                        uid) + "&courseClassId=" + str(courseClassId) + "&courseId=" + str(
-                        courseId) + "&chapterId=0&paperId=" + str(paper2) + "&questionId=" + str(
-                        questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(
-                        g[1:]) + "&accessKey=1&secretKey=1"
+                    url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId=" + str(uid) + "&courseClassId=" + str(courseClassId) + "&courseId=" + str(courseId) + "&chapterId=0&paperId=" + str(paper2) + "&questionId=" + str(questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(g[1:]) + "&accessKey=1&secretKey=1"
                     res = requests.get(url).json()
                     status_test = res['result']
                     if status_test == '1':
@@ -410,11 +401,7 @@ while negriuwg < class_num:
                         print('提交失败')
                 else:
                     print('答案为：' + str(g[1:]))
-                    url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId=" + str(
-                        uid) + "&courseClassId=" + str(courseClassId) + "&courseId=" + str(
-                        courseId) + "&chapterId=0&paperId=" + str(paper2) + "&questionId=" + str(
-                        questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(
-                        g[1:]) + "&accessKey=1&secretKey=1"
+                    url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId=" + str(uid) + "&courseClassId=" + str(courseClassId) + "&courseId=" + str(courseId) + "&chapterId=0&paperId=" + str(paper2) + "&questionId=" + str(questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(g[1:]) + "&accessKey=1&secretKey=1"
                     res = requests.get(url).json()
                     status_test = res['result']
                     if status_test == '1':
@@ -454,11 +441,7 @@ while negriuwg < class_num:
                     answerID = res_question[q + chang]['ItemOptions'][d]['ItemID']
                     g = g + ',' + answerID
                     print('答案为：' + str(g[1:]))
-                    url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId=" + str(
-                        uid) + "&courseClassId=" + str(courseClassId) + "&courseId=" + str(
-                        courseId) + "&chapterId=0&paperId=" + str(paper2) + "&questionId=" + str(
-                        questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(
-                        g[1:]) + "&accessKey=1&secretKey=1"
+                    url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId=" + str(uid) + "&courseClassId=" + str(courseClassId) + "&courseId=" + str(courseId) + "&chapterId=0&paperId=" + str(paper2) + "&questionId=" + str(questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(g[1:]) + "&accessKey=1&secretKey=1"
                     res = requests.get(url).json()
                     status_test = res['result']
                     if status_test == '1':
@@ -467,11 +450,7 @@ while negriuwg < class_num:
                         print('提交失败')
                 else:
                     print('答案为：' + str(g[1:]))
-                    url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId=" + str(
-                        uid) + "&courseClassId=" + str(courseClassId) + "&courseId=" + str(
-                        courseId) + "&chapterId=0&paperId=" + str(paper2) + "&questionId=" + str(
-                        questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(
-                        g[1:]) + "&accessKey=1&secretKey=1"
+                    url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId=" + str(uid) + "&courseClassId=" + str(courseClassId) + "&courseId=" + str(courseId) + "&chapterId=0&paperId=" + str(paper2) + "&questionId=" + str(questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(g[1:]) + "&accessKey=1&secretKey=1"
                     res = requests.get(url).json()
                     status_test = res['result']
                     if status_test == '1':
@@ -501,11 +480,7 @@ while negriuwg < class_num:
                 # print(stay)
             answerID = res_question[q + chang + chang_duo]['ItemOptions'][d]['ItemID']  # 答案ID
             print('第' + str(q + 1) + '个答案ID为：' + answerID)
-            url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId=" + str(
-                uid) + "&courseClassId=" + str(courseClassId) + "&courseId=" + str(
-                courseId) + "&chapterId=0&paperId=" + str(paper2) + "&questionId=" + str(
-                questionID) + "&examTimes=1&examCountId=" + str(examID) + "&userAnswers=" + str(
-                answerID) + "&accessKey=1&secretKey=1"
+            url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId=" + str(uid) + "&courseClassId=" + str(courseClassId) + "&courseId=" + str(courseId) + "&chapterId=0&paperId=" + str(paper2) + "&questionId=" + str(questionID) + "&examTimes=1&examCountId=" + str(examID) + "&userAnswers=" + str(answerID) + "&accessKey=1&secretKey=1"
             res = requests.get(url).json()
             # print(res)
             status_test = res['result']

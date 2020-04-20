@@ -1,4 +1,4 @@
-print('说明：本程序为云计算1801班交流Python学习使用，禁止外传，禁止用于违规用途，禁止商业用途;\n若因使用本程序造成违法行为，本人概不负责')
+print('说明：本程序为交流Python学习使用，禁止外传，禁止用于违规用途，禁止商业用途;若因使用本程序造成违法行为，本人概不负责')
 import requests,json,time,random
 from jsonpath import jsonpath
 name=input("请输入你的用户名：")

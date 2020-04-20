@@ -8,7 +8,7 @@ while cloud<2018030830 or cloud>2018030876:
     input('请关闭本程序')
 
 passwd=input("请输入密码：")
-url="http://wrggka.whvcse.edu.cn/api/M_User/Login?username='+name+'&password='+passwd+'&accessKey=1&secretKey=1"
+url="http://wrggka.whvcse.edu.cn/api/M_User/Login?username="+name+"&password="+passwd+"&accessKey=1&secretKey=1"
 res = requests.get(url).json()
 #print(res)
 #登录状态
@@ -19,7 +19,7 @@ status=res['status']
 while status!='1':
     name = input('用户名或密码错误,请重新输入用户名：')
     passwd = input('请输入密码：')
-    url ="http://wrggka.whvcse.edu.cn/api/M_User/Login?username='+name+'&password='+passwd+'&accessKey=1&secretKey=1"
+    url ="http://wrggka.whvcse.edu.cn/api/M_User/Login?username="+name+"&password="+passwd+"&accessKey=1&secretKey=1"
     res = requests.get(url).json()
     status = res['status']              #这里要对状态重新赋值，否则会陷入死循环
 
@@ -32,7 +32,7 @@ res_class=requests.get(url).json()
 passedCourseCount=res_class['passedCourseCount']
 acquisitionCrdicts=res_class['acquisitionCrdicts']
 class_num=len(res_class['courseList'])    #获取课程列表长度，即所选课程数
-print('你好'+user+'\n你总共选课：'+str (class_num)+'门；'+'\n已通过：'+str (passedCourseCount)+'门，'+'\n获得学分：'+str(acquisitionCrdicts))  #这几个类型一定要加str进行类型转换！！
+print('你好'+user+'\n你总共选课：'+str (class_num)+'门；'+'\n已通过：'+str (passedCourseCount)+'门，'+'\n获得学分：'+str(acquisitionCrdicts))  #这几个类型一定要加str ！！！
 
 #获取课程状态
 i=0

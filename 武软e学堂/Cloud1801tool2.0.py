@@ -69,7 +69,7 @@ while y < class_num:
             print('视频编号：'+videoID_num)
             videotime=random.randint(150, 700)
             url="http://wrggka.whvcse.edu.cn/api/M_Course/IsNoStudyvideo?userId="+str(uid)+"&videoid="+str(videoID_num)+"&videotime="+str(videotime)+"&accessKey=1&secretKey=1"
-            time.sleep(1)
+            time.sleep(1)                  #防止ip被封 延迟1s执行
             res_video=requests.get(url).json()
             status_video = res['status']
             if status_video=='1':
@@ -79,7 +79,7 @@ while y < class_num:
             x=x+1
     y=y+1
 input('视频已全部看完，按回车开始做题')
-negriuwg=0
+negriuwg=0            #实在是起不出来变量名了
 while negriuwg < class_num:
     class_name = res_class['courseList'][negriuwg]['courseName']  # 课程名
     class_success = res_class['courseList'][negriuwg]['isNoSuccess']  # 通过状态

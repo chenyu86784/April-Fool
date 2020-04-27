@@ -88,7 +88,7 @@ while negriuwg < class_num:
         paper2 = tesID[1]
         print('正在初始化<'+str(class_name)+'>的第一张试卷...')
         time.sleep(1)
-        url = "http://wrggka.whvcse.edu.cn/api/M_Course/GetChapterTestInfo?userId=3689&courseId=734&courseClassId=477&chapterId=0&paperId=" + paper1 + "&accessKey=1&secretKey=1"  # get examCountID
+        url = "http://wrggka.whvcse.edu.cn/api/M_Course/GetChapterTestInfo?userId="+str(uid)+"&courseId="+str(courseId)+"&courseClassId="+str(courseClassId)+"&chapterId=0&paperId=" + paper1 + "&accessKey=1&secretKey=1"  # get examCountID
         res_test = requests.get(url).json()
         # print(res_test)
         examID = str(jsonpath(res_test, "$..examCountId"))
@@ -288,7 +288,7 @@ while negriuwg < class_num:
         print(res)
         print('正在初始化<'+str(class_name)+'>的第二张试卷...')
         time.sleep(1)
-        url = "http://wrggka.whvcse.edu.cn/api/M_Course/GetChapterTestInfo?userId=3689&courseId=734&courseClassId=477&chapterId=0&paperId=" + paper2 + "&accessKey=1&secretKey=1"  # get examCountID
+        url = "http://wrggka.whvcse.edu.cn/api/M_Course/GetChapterTestInfo?userId="+str(uid)+"&courseId="+str(courseId)+"&courseClassId="+str(courseClassId)+"&chapterId=0&paperId=" + paper2 + "&accessKey=1&secretKey=1"  # get examCountID
         res_test = requests.get(url).json()
         # print(res_test)
         examID = str(jsonpath(res_test, "$..examCountId"))

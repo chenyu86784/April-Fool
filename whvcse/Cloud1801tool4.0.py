@@ -128,26 +128,30 @@ def class_exam():
             print('第' + str(q + 1) + '题为：' + questionText)
             stay = res_question[q]['ItemOptions'][d]['ItemIsCorrect']  # 正确答案所在的数组的定位 q值和d值
             # print((stay))
-            while stay != '1':
-                d = d + 1
-                stay = res_question[q]['ItemOptions'][d]['ItemIsCorrect']
-                # print(stay)
-            answerID = res_question[q]['ItemOptions'][d]['ItemID']  # 答案ID
-            answerText = res_question[q]['ItemOptions'][d]['ItemTitle']
-            print('第' + str(q + 1) + '题答案为：' + answerText)
-            url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId=" + str(
-                uid) + "&courseClassId=" + str(courseClassId) + "&courseId=" + str(
-                courseId) + "&chapterId=0&paperId=" + str(paper) + "&questionId=" + str(
-                questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(
-                answerID) + "&accessKey=1&secretKey=1"
-            res = requests.get(url).json()
-            # print(res)
-            status_test = res['result']
-            if status_test == '1':
-                print('提交成功')
+            try:
+                while stay != '1':
+                    d = d + 1
+                    stay = res_question[q]['ItemOptions'][d]['ItemIsCorrect']
+            except IndexError:
+                print("此题异常终止！！！")
+                q = q + 1
             else:
-                print('提交失败')
-            q = q + 1
+                answerID = res_question[q]['ItemOptions'][d]['ItemID']  # 答案ID
+                answerText = res_question[q]['ItemOptions'][d]['ItemTitle']
+                print('第' + str(q + 1) + '题答案为：' + answerText)
+                url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId=" + str(
+                    uid) + "&courseClassId=" + str(courseClassId) + "&courseId=" + str(
+                    courseId) + "&chapterId=0&paperId=" + str(paper) + "&questionId=" + str(
+                    questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(
+                    answerID) + "&accessKey=1&secretKey=1"
+                res = requests.get(url).json()
+                # print(res)
+                status_test = res['result']
+                if status_test == '1':
+                    print('提交成功')
+                else:
+                    print('提交失败')
+                q = q + 1
 
         print("正在做多选题......")
         z = []
@@ -170,9 +174,9 @@ def class_exam():
             print('第' + str(q + 1) + '题为：' + questionText)
             stay = res_question[q + chang]['ItemOptions'][d]['ItemIsCorrect']  # 正确答案所在的数组的定位 q值和d值
             test_long = len(res_question[q + chang]['ItemOptions'])
-            # print("选项个数为："+str(test_long))
+            # 以下是一个憨憨算法
             if test_long == 5:
-                if stay == '1':  # 这是一个巨他妈傻逼的算法，有很大的局限性
+                if stay == '1':
                     answerID = res_question[q + chang]['ItemOptions'][d]['ItemID']
                     answerText = res_question[q + chang]['ItemOptions'][d]['ItemTitle']
                     g = answerID + ','

@@ -93,22 +93,27 @@ while k < text_long:
             print('第' + str(q + 1) + '题为：' + questionText)
             stay = res_question[q]['ItemOptions'][d]['ItemIsCorrect']  # 正确答案所在的数组的定位 q值和d值
             # print((stay))
-            while stay != '1':
-                d = d + 1
-                stay = res_question[q]['ItemOptions'][d]['ItemIsCorrect']
-                # print(stay)
-            answerID = res_question[q]['ItemOptions'][d]['ItemID']  # 答案ID
-            answerText=res_question[q]['ItemOptions'][d]['ItemTitle']
-            print('第' + str(q + 1) + '题答案为：' + answerText)
-            url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId="+str(uid)+"&courseClassId=" + str(courseClassId) + "&courseId=" + str(courseId) + "&chapterId=0&paperId=" + str(paper1) + "&questionId=" + str(questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(answerID) + "&accessKey=1&secretKey=1"
-            res = requests.get(url).json()
-            # print(res)
-            status_test = res['result']
-            if status_test == '1':
-                print('提交成功')
+            try:
+                while stay != '1':
+                    d = d + 1
+                    stay = res_question[q]['ItemOptions'][d]['ItemIsCorrect']
+            except IndexError:
+                print("此题异常终止！！！")
+                q=q+1
             else:
-                print('提交失败')
-            q = q + 1
+                answerID = res_question[q]['ItemOptions'][d]['ItemID']  # 答案ID
+                answerText=res_question[q]['ItemOptions'][d]['ItemTitle']
+                print('第' + str(q + 1) + '题答案为：' + answerText)
+                url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId="+str(uid)+"&courseClassId=" + str(courseClassId) + "&courseId=" + str(courseId) + "&chapterId=0&paperId=" + str(paper1) + "&questionId=" + str(questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(answerID) + "&accessKey=1&secretKey=1"
+                res = requests.get(url).json()
+                time.sleep(0.1)
+                # print(res)
+                status_test = res['result']
+                if status_test == '1':
+                    print('提交成功')
+                else:
+                    print('提交失败')
+                q = q + 1
 
         print("正在做多选题......")
         z = []
@@ -184,6 +189,7 @@ while k < text_long:
                     url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId=" + str(uid) + "&courseClassId=" + str(courseClassId) + "&courseId=" + str(courseId) + "&chapterId=0&paperId=" + str(paper1) + "&questionId=" + str(questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(g) + "&accessKey=1&secretKey=1"
                     res = requests.get(url).json()
                     status_test = res['result']
+                    time.sleep(0.1)
                     if status_test == '1':
                         print('提交成功')
                     else:
@@ -194,6 +200,7 @@ while k < text_long:
                     url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId=" + str(uid) + "&courseClassId=" + str(courseClassId) + "&courseId=" + str(courseId) + "&chapterId=0&paperId=" + str(paper1) + "&questionId=" + str(questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(g[:-1]) + "&accessKey=1&secretKey=1"
                     res = requests.get(url).json()
                     status_test = res['result']
+                    time.sleep(0.1)
                     if status_test == '1':
                         print('提交成功')
                     else:
@@ -241,6 +248,7 @@ while k < text_long:
                     print('答案为：' + str(Tt))
                     url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId=" + str(uid) + "&courseClassId=" + str(courseClassId) + "&courseId=" + str(courseId) + "&chapterId=0&paperId=" + str(paper1) + "&questionId=" + str(questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(g) + "&accessKey=1&secretKey=1"
                     res = requests.get(url).json()
+                    time.sleep(0.1)
                     status_test = res['result']
                     if status_test == '1':
                         print('提交成功')
@@ -251,6 +259,7 @@ while k < text_long:
                     print('答案为：' + str(Tt[:-1]))
                     url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId=" + str(uid) + "&courseClassId=" + str(courseClassId) + "&courseId=" + str(courseId) + "&chapterId=0&paperId=" + str(paper1) + "&questionId=" + str(questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(g[-1]) + "&accessKey=1&secretKey=1"
                     res = requests.get(url).json()
+                    time.sleep(0.1)
                     status_test = res['result']
                     if status_test == '1':
                         print('提交成功')
@@ -288,6 +297,7 @@ while k < text_long:
                     print('答案为：' + str(Tt))
                     url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId=" + str(uid) + "&courseClassId=" + str(courseClassId) + "&courseId=" + str(courseId) + "&chapterId=0&paperId=" + str(paper1) + "&questionId=" + str(questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(g) + "&accessKey=1&secretKey=1"
                     res = requests.get(url).json()
+                    time.sleep(0.1)
                     status_test = res['result']
                     if status_test == '1':
                         print('提交成功')
@@ -298,6 +308,7 @@ while k < text_long:
                     print('答案为：' + str(Tt[:-1]))
                     url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId=" + str(uid) + "&courseClassId=" + str(courseClassId) + "&courseId=" + str(courseId) + "&chapterId=0&paperId=" + str(paper1) + "&questionId=" + str(questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(g[:-1]) + "&accessKey=1&secretKey=1"
                     res = requests.get(url).json()
+                    time.sleep(0.1)
                     status_test = res['result']
                     if status_test == '1':
                         print('提交成功')
@@ -331,6 +342,7 @@ while k < text_long:
             print('答案为：' + answerText)
             url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId=" + str(uid) + "&courseClassId=" + str(courseClassId) + "&courseId=" + str(courseId) + "&chapterId=0&paperId=" + str(paper1) + "&questionId=" + str(questionID) + "&examTimes=1&examCountId=" + str(examID) + "&userAnswers=" + str(answerID) + "&accessKey=1&secretKey=1"
             res = requests.get(url).json()
+            time.sleep(0.1)
             # print(res)
             status_test = res['result']
             if status_test == '1':
@@ -353,7 +365,7 @@ while k < text_long:
         # print('这是examID'+str(examID))
         url = "http://wrggka.whvcse.edu.cn/api/M_Course/GetPaperQuestions3?paperId=" + paper2 + "&accessKey=1&secretKey=1"  # get question_info
         res_question = requests.get(url).json()
-        # print(res_question)
+        #print(res_question)
         # 单选
         print("正在做单选题......")
         y = []
@@ -372,26 +384,30 @@ while k < text_long:
             print('第' + str(q + 1) + '题为：' + questionText)
             stay = res_question[q]['ItemOptions'][d]['ItemIsCorrect']  # 正确答案所在的数组的定位 q值和d值
             # print((stay))
-            while stay != '1':
-                d = d + 1
-                stay = res_question[q]['ItemOptions'][d]['ItemIsCorrect']
-                # print(stay)
-            answerID = res_question[q]['ItemOptions'][d]['ItemID']  # 答案ID
-            answerText = res_question[q]['ItemOptions'][d]['ItemTitle']
-            print('第' + str(q + 1) + '题答案为：' + answerText)
-            url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId=" + str(
-                uid) + "&courseClassId=" + str(courseClassId) + "&courseId=" + str(
-                courseId) + "&chapterId=0&paperId=" + str(paper2) + "&questionId=" + str(
-                questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(
-                answerID) + "&accessKey=1&secretKey=1"
-            res = requests.get(url).json()
-            # print(res)
-            status_test = res['result']
-            if status_test == '1':
-                print('提交成功')
+            try:
+                while stay != '1':
+                    d = d + 1
+                    stay = res_question[q]['ItemOptions'][d]['ItemIsCorrect']
+            except IndexError:
+                print("此题异常终止！！！")
+                q=q+1
             else:
-                print('提交失败')
-            q = q + 1
+                answerID = res_question[q]['ItemOptions'][d]['ItemID']  # 答案ID
+                answerText = res_question[q]['ItemOptions'][d]['ItemTitle']
+                print('第' + str(q + 1) + '题答案为：' + answerText)
+                url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitQuestionAnswer2?userId=" + str(
+                    uid) + "&courseClassId=" + str(courseClassId) + "&courseId=" + str(
+                    courseId) + "&chapterId=0&paperId=" + str(paper2) + "&questionId=" + str(
+                    questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(
+                    answerID) + "&accessKey=1&secretKey=1"
+                res = requests.get(url).json()
+                # print(res)
+                status_test = res['result']
+                if status_test == '1':
+                    print('提交成功')
+                else:
+                    print('提交失败')
+                q = q + 1
 
         print("正在做多选题......")
         z = []
@@ -654,6 +670,7 @@ while k < text_long:
             courseClassId) + "&courseId=" + str(courseId) + "&chapterId=0&paperId=" + str(
             paper2) + "&accessKey=1&secretKey=1"
         res = requests.get(url).json()
+        time.sleep(0.1)
         print("第二张试卷：" + res['message'])
         print("该课程考试已全部完成")
     k = k + 1

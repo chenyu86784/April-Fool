@@ -19,13 +19,13 @@ def begin():
     name = input("请输入你的学号：")
     passwd=input("请输入密码：")
     url="http://wrggka.whvcse.edu.cn/api/M_User/Login?username="+name+"&password="+passwd+"&accessKey=1&secretKey=1"
-    res = requests.get(url).json()
+    res = requests.get(url,headers=headers).json()
     status=res['status']           #获取登录状态
     while status!='1':             #错误循环
         name = input('用户名或密码错误,请重新输入用户名：')
         passwd = input('请输入密码：')
         url ="http://wrggka.whvcse.edu.cn/api/M_User/Login?username="+name+"&password="+passwd+"&accessKey=1&secretKey=1"
-        res = requests.get(url).json()
+        res = requests.get(url,headers=headers).json()
         status = res['status']              #这里要对状态重新赋值，否则会陷入死循环
     return res
 
@@ -34,7 +34,7 @@ def first():
     user = res['trueName']
     uid = res['uid']
     url = "http://wrggka.whvcse.edu.cn/api/M_Semester/GetStudentLearningRecord?studentId=" + uid + "&accessKey=0&secretKey=0"
-    res_class = requests.get(url).json()
+    res_class = requests.get(url,headers=headers).json()
     passedCourseCount = res_class['passedCourseCount']
     acquisitionCrdicts = res_class['acquisitionCrdicts']
     class_num = len(res_class['courseList'])  # 获取课程列表长度，即所选课程数
@@ -64,7 +64,7 @@ def class_video():
     courseId = res_class['courseList'][y]['courseId']
     courseClassId = res_class['courseList'][y]['courseClassId']
     url = "http://wrggka.whvcse.edu.cn/api/M_Course/GetCourseSPZT?userId=" + str(uid) + "&courseId=" + str(courseId) + "&courseClassId=" + str(courseClassId) + "&accessKey=1&secretKey=1"
-    r = requests.get(url).json()
+    r = requests.get(url,headers=headers).json()
     resID = jsonpath(r, "$..resID")
     videoID = list(set(resID))
     vidnum = len(videoID)
@@ -76,7 +76,7 @@ def class_video():
         url = "http://wrggka.whvcse.edu.cn/api/M_Course/IsNoStudyvideo?userId=" + str(uid) + "&videoid=" + str(
             videoID_num) + "&videotime=" + str(videotime) + "&accessKey=1&secretKey=1"
         time.sleep(0.1)  # ip防封
-        res_video = requests.get(url).json()
+        res_video = requests.get(url,headers=headers).json()
         status_video = res['status']
         if status_video == '1':
             print('提交成功')
@@ -92,7 +92,7 @@ def class_exam():
     courseClassId = res_class['courseList'][y]['courseClassId']
     url = "http://wrggka.whvcse.edu.cn/api/M_Course/GetCourseSPZT?userId=" + str(uid) + "&courseId=" + str(
         courseId) + "&courseClassId=" + str(courseClassId) + "&accessKey=1&secretKey=1"  # get paperID
-    res_paper = requests.get(url).json()
+    res_paper = requests.get(url,headers=headers).json()
     tesID = jsonpath(res_paper, "$..testID")
     # print(tesID)
     paper1 = tesID[0]
@@ -102,13 +102,13 @@ def class_exam():
         url = "http://wrggka.whvcse.edu.cn/api/M_Course/GetChapterTestInfo?userId=" + str(uid) + "&courseId=" + str(
         courseId) + "&courseClassId=" + str(
         courseClassId) + "&chapterId=0&paperId=" + paper + "&accessKey=1&secretKey=1"  # get examCountID
-        res_test = requests.get(url).json()
+        res_test = requests.get(url,headers=headers).json()
         # print(res_test)
         examID = str(jsonpath(res_test, "$..examCountId"))
         examID = examID[0]
         # print('这是examID'+str(examID))
         url = "http://wrggka.whvcse.edu.cn/api/M_Course/GetPaperQuestions3?paperId=" + paper + "&accessKey=1&secretKey=1"  # get question_info
-        res_question = requests.get(url).json()
+        res_question = requests.get(url,headers=headers).json()
         # print(res_question)
         # 单选
         print("正在做单选题......")
@@ -144,7 +144,7 @@ def class_exam():
                     courseId) + "&chapterId=0&paperId=" + str(paper) + "&questionId=" + str(
                     questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(
                     answerID) + "&accessKey=1&secretKey=1"
-                res = requests.get(url).json()
+                res = requests.get(url,headers=headers).json()
                 # print(res)
                 status_test = res['result']
                 if status_test == '1':
@@ -230,7 +230,7 @@ def class_exam():
                         courseId) + "&chapterId=0&paperId=" + str(paper) + "&questionId=" + str(
                         questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(
                         g) + "&accessKey=1&secretKey=1"
-                    res = requests.get(url).json()
+                    res = requests.get(url,headers=headers).json()
                     status_test = res['result']
                     if status_test == '1':
                         print('提交成功')
@@ -244,7 +244,7 @@ def class_exam():
                         courseId) + "&chapterId=0&paperId=" + str(paper) + "&questionId=" + str(
                         questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(
                         g[:-1]) + "&accessKey=1&secretKey=1"
-                    res = requests.get(url).json()
+                    res = requests.get(url,headers=headers).json()
                     status_test = res['result']
                     if status_test == '1':
                         print('提交成功')
@@ -296,7 +296,7 @@ def class_exam():
                         courseId) + "&chapterId=0&paperId=" + str(paper) + "&questionId=" + str(
                         questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(
                         g) + "&accessKey=1&secretKey=1"
-                    res = requests.get(url).json()
+                    res = requests.get(url,headers=headers).json()
                     status_test = res['result']
                     if status_test == '1':
                         print('提交成功')
@@ -310,7 +310,7 @@ def class_exam():
                         courseId) + "&chapterId=0&paperId=" + str(paper) + "&questionId=" + str(
                         questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(
                         g[-1]) + "&accessKey=1&secretKey=1"
-                    res = requests.get(url).json()
+                    res = requests.get(url,headers=headers).json()
                     status_test = res['result']
                     if status_test == '1':
                         print('提交成功')
@@ -351,7 +351,7 @@ def class_exam():
                         courseId) + "&chapterId=0&paperId=" + str(paper) + "&questionId=" + str(
                         questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(
                         g) + "&accessKey=1&secretKey=1"
-                    res = requests.get(url).json()
+                    res = requests.get(url,headers=headers).json()
                     status_test = res['result']
                     if status_test == '1':
                         print('提交成功')
@@ -365,7 +365,7 @@ def class_exam():
                         courseId) + "&chapterId=0&paperId=" + str(paper) + "&questionId=" + str(
                         questionID) + "&examTimes=0&examCountId=" + str(examID) + "&userAnswers=" + str(
                         g[:-1]) + "&accessKey=1&secretKey=1"
-                    res = requests.get(url).json()
+                    res = requests.get(url,headers=headers).json()
                     status_test = res['result']
                     if status_test == '1':
                         print('提交成功')
@@ -402,7 +402,7 @@ def class_exam():
                 courseId) + "&chapterId=0&paperId=" + str(paper) + "&questionId=" + str(
                 questionID) + "&examTimes=1&examCountId=" + str(examID) + "&userAnswers=" + str(
                 answerID) + "&accessKey=1&secretKey=1"
-            res = requests.get(url).json()
+            res = requests.get(url,headers=headers).json()
             # print(res)
             status_test = res['result']
             if status_test == '1':
@@ -414,7 +414,7 @@ def class_exam():
         url = "http://wrggka.whvcse.edu.cn/api/M_Course/SubmitPaper?userId=" + str(uid) + "&courseClassId=" + str(
             courseClassId) + "&courseId=" + str(courseId) + "&chapterId=0&paperId=" + str(
             paper) + "&accessKey=1&secretKey=1"
-        res = requests.get(url).json()
+        res = requests.get(url,headers=headers).json()
         print("第"+str(cishu)+"张试卷：" + res['message'])
     cishu=1
     paper=paper1
@@ -424,6 +424,9 @@ def class_exam():
     first_exam()
 
 if __name__ == "__main__":
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36 QIHU 360SE'
+    }
     res = begin()
     res_class,uid=first()
     class_status()
